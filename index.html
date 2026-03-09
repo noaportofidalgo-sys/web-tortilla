@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Chosen Palette: Tonos cálidos orgánicos (stone-50 para el fondo, amber-600 para acentos y llamadas a la acción) que reflejan la calidez del plato. -->
+<!-- Application Structure Plan: SPA con arquitectura narrativa lineal dividida en siete nodos: Contexto Histórico Visual Expandido (Centrado), Técnica Interactiva (Ampliada), MI RECETA PERSONAL (Centrado), SANTANDER GOURMET (Centrado e Interactivo), Análisis de Mercado, Referentes Culturales y Conversión. Se utiliza navegación fija con scroll-spy para una exploración fluida. -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- OPTIMIZACIÓN SEO -->
+    <title>Tortilla de Patata: Receta Tradicional, Historia y Secretos</title>
+    <meta name="description" content="Explora la guía definitiva sobre la tortilla de patata española. Aprende la historia completa, domina la técnica profesional paso a paso con o sin cebolla y descubre los secretos de los mejores chefs.">
+    <meta name="keywords" content="tortilla de patata, receta tortilla española, historia de la tortilla, técnica cocina, gastronomía española, Noa Porto Fidalgo, Santander">
+    <meta name="author" content="Noa Porto Fidalgo">
+    
+    <!-- ESTRUCTURA DE DATOS JSON-LD (SEO AVANZADO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "¿Cuál es el origen de la tortilla de patatas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aunque existen varias leyendas, las investigaciones más recientes sitúan su origen en 1798 en Villanueva de la Serena (Badajoz), Extremadura, como una solución nutritiva y económica."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Cuál es la mejor variedad de patata para la tortilla?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Se recomienda utilizar variedades harinosas y con poco agua como la Monalisa o la Kennebec, ya que mantienen mejor la textura tras el confitado."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Es mejor la tortilla con cebolla o sin cebolla?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es el gran debate nacional. La cebolla aporta dulzor y una textura más melosa debido a su caramelización, mientras que la versión SIN cebolla resalta el sabor puro de la patata y el huevo."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Cuánto tiempo debe reposar la mezcla antes de cuajar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El secreto de los expertos es dejar reposar la mezcla de patata caliente y huevo batido durante unos 10 minutos para que el almidón espese la mezcla."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Cuál es el truco para que la tortilla quede jugosa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Confitar la patata a fuego lento en AOVE abundante y realizar un sellado rápido a fuego muy alto en la sartén para mantener el interior casi líquido."
+        }
+      }],
+      "author": {
+        "@type": "Person",
+        "name": "Noa Porto Fidalgo"
+      },
+      "description": "Guía definitiva e interactiva sobre la tortilla de patata: historia, técnica profesional paso a paso y análisis de variantes gastronómicas."
+    }
+    </script>
+
+    <!-- Etiquetas para compartir en Redes Sociales (Open Graph) -->
+    <meta property="og:title" content="Tortilla de Patata: Receta Tradicional, Historia y Secretos">
+    <meta property="og:description" content="Explora la guía definitiva sobre la tortilla de patata española. Aprende la historia completa, domina la técnica paso a paso con o sin cebolla y descubre los secretos de los mejores chefs.">
+    <meta property="og:image" content="ASSETS/IMG/tortilla-patata.png">
+    <meta property="og:image:width" content="400">
+    <meta property="og:image:height" content="230">
+    <meta property="og:type" content="website">
+
+    <!-- Etiquetas para Twitter (Twitter Cards) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tortilla de Patata: Receta Tradicional e Historia">
+    <meta name="twitter:description" content="Domina la técnica de la tortilla de patata con nuestra guía interactiva.">
+    <meta name="twitter:image" content="ASSETS/IMG/tortilla-patata.png">
+
+    <!-- FAVICON -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍳</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+        html { scroll-behavior: smooth; }
+        .tab-btn.active {
+            border-bottom-color: #d97706;
+            color: #d97706;
+            font-weight: 600;
+        }
+
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #d97706;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #d97706;
+        }
+        
+        .hero-header {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('ASSETS/IMG/imagen-tortilla.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 400; 
+            text-transform: lowercase; 
+        }
+
+        .elegant-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        #mobile-overlay.active {
+            display: flex;
+        }
+
+        .title-shadow {
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .variant-card {
+            transition: all 0.3s ease;
+            display: block;
+        }
+        .variant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .footer-bg-wrapper {
+            position: relative;
+            overflow: hidden;
+            background-color: #0c0a09;
+        }
+        .footer-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('ASSETS/IMG/imagen-tortilla.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.3);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased">
+
+<nav class="fixed top-0 w-full bg-stone-100/90 backdrop-blur-md border-b border-stone-200 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 text-left">
+            <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <span class="text-2xl">🍳</span>
+                <span class="font-bold text-stone-700 text-lg tracking-tight uppercase">Tortilla de <span class="text-amber-600">Patata</span></span>
+            </div>
+            
+            <button id="hamburger-btn" class="p-2 rounded-md text-stone-600 hover:text-amber-600 focus:outline-none transition-colors">
+                <div class="space-y-1.5">
+                    <span class="block w-6 h-0.5 bg-current"></span>
+                    <span class="block w-6 h-0.5 bg-current"></span>
+                    <span class="block w-6 h-0.5 bg-current"></span>
+                </div>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div id="mobile-overlay" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-[60] hidden flex justify-end">
+    <div class="w-72 bg-white h-full shadow-2xl p-8 flex flex-col gap-8 overflow-y-auto">
+        <div class="flex justify-between items-center border-b border-stone-100 pb-4">
+            <button id="close-menu" class="text-stone-400 hover:text-red-500 text-2xl font-bold">&times;</button>
+            <span class="font-bold text-stone-800 uppercase text-xs tracking-widest text-stone-400">NAVEGACIÓN</span>
+        </div>
+        <div class="flex flex-col space-y-2 text-right">
+            <a href="#historia" class="menu-link text-sm font-bold text-stone-600 hover:text-stone-900 hover:bg-yellow-300 p-3 rounded-xl transition-all uppercase tracking-widest">HISTORIA</a>
+            <a href="#receta" class="menu-link text-sm font-bold text-stone-600 hover:text-stone-900 hover:bg-yellow-300 p-3 rounded-xl transition-all uppercase tracking-widest">LA RECETA</a>
+            <a href="#mi-receta" class="menu-link text-sm font-bold text-stone-600 hover:text-stone-900 hover:bg-yellow-300 p-3 rounded-xl transition-all uppercase tracking-widest">MI RECETA PERSONAL</a>
+            <a href="#santander" class="menu-link text-sm font-bold text-stone-600 hover:text-stone-900 hover:bg-yellow-300 p-3 rounded-xl transition-all uppercase tracking-widest">SANTANDER GOURMET</a>
+            <a href="#variantes" class="menu-link text-sm font-bold text-stone-600 hover:text-stone-900 hover:bg-yellow-300 p-3 rounded-xl transition-all uppercase tracking-widest">VARIANTES</a>
+            <a href="#cultura" class="menu-link text-sm font-bold text-stone-600 hover:text-stone-900 hover:bg-yellow-300 p-3 rounded-xl transition-all uppercase tracking-widest">CULTURA & MEDIOS</a>
+            <a href="#contacto" class="menu-link text-sm font-bold text-stone-600 hover:text-stone-900 hover:bg-yellow-300 p-3 rounded-xl transition-all uppercase tracking-widest border-b border-stone-100 mb-2 text-right">CONTACTO</a>
+            <a href="mailto:noa.tortilladepatata@gmail.com" class="text-[10px] sm:text-xs font-bold text-amber-600 hover:text-stone-900 hover:bg-yellow-300 p-3 rounded-xl transition-all lowercase tracking-tighter break-words text-right">noa.tortilladepatata@gmail.com</a>
+        </div>
+    </div>
+</div>
+
+<header class="hero-header pt-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h1 class="hero-title text-7xl md:text-9xl text-white leading-tight drop-shadow-2xl text-center">
+            tortilla de patata
+        </h1>
+        <p class="elegant-text text-xl md:text-2xl text-stone-100 mt-8 max-w-2xl mx-auto title-shadow font-medium leading-relaxed italic text-center text-center">
+            Un recorrido interactivo por el plato más emblemático de la gastronomía española.
+        </p>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-24 mt-16">
+
+    <section id="historia" class="scroll-mt-24">
+        <!-- Título principal centrado -->
+        <div class="mb-12 text-center">
+            <h2 class="elegant-text text-4xl font-bold text-stone-800 border-b-2 border-amber-200 inline-block pb-2 uppercase tracking-tight text-center mx-auto text-center">Historia y Orígenes</h2>
+            <!-- Información centrada por petición previa -->
+            <p class="text-stone-600 mt-6 max-w-4xl mx-auto text-lg leading-relaxed text-center">
+                La tortilla de patata, también conocida como tortilla española, es uno de los platos más emblemáticos de España. Aunque hoy forma parte esencial de su identidad gastronómica, su origen está ligado a cambios sociales, económicos y agrícolas que marcaron la historia del país.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 flex flex-col gap-4 text-left">
+                <div class="flex items-center gap-4 text-left">
+                    <span class="text-4xl text-left">🌍</span>
+                    <h3 class="elegant-text text-2xl font-bold text-amber-700 uppercase tracking-tight text-left text-left">La llegada a Europa</h3>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-stone-600 leading-relaxed text-sm text-left">
+                        Para entender el nacimiento de la tortilla de patata, es necesario retroceder al <strong class="text-stone-800 text-left">siglo XVI</strong>, cuando la patata llegó a Europa procedente de América tras los viajes de exploración. Introducida en España después de la conquista del Imperio Inca, durante mucho tiempo fue considerada un alimento pobre.
+                    </p>
+                    <p class="text-stone-600 leading-relaxed text-sm bg-stone-50 p-3 rounded-xl border-l-4 border-amber-400 text-left text-left">
+                        No fue hasta el <strong class="text-stone-800 text-left">siglo XVIII</strong> cuando la patata comenzó a popularizarse como alimento básico, alimentando a grandes sectores de la población con bajo coste.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 flex flex-col gap-4 text-left">
+                <div class="flex items-center gap-4 text-left">
+                    <span class="text-4xl text-left">📜</span>
+                    <h3 class="elegant-text text-2xl font-bold text-amber-700 uppercase tracking-tight text-left text-left">Referencias Documentadas</h3>
+                </div>
+                <div class="space-y-3 text-left">
+                    <p class="text-stone-600 leading-relaxed text-sm text-left">
+                        La primera referencia escrita conocida que menciona algo similar a la tortilla de patata data de <strong class="text-stone-800 text-lg italic text-left">1817</strong>. En un documento de la localidad de Villanueva de la Serena, Extremadura, se describe una preparación elaborada con huevos y patatas como alimento habitual de las clases humildes.
+                    </p>
+                    <p class="text-stone-600 leading-relaxed text-sm bg-amber-50 p-4 rounded-xl border-l-4 border-amber-500 text-left text-left">
+                        Este dato sugiere que la tortilla surgió como una solución sencilla y nutritiva para combatir la pobreza y el hambre en zonas rurales, aprovechando la versatilidad de los productos locales.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 flex flex-col gap-4 text-left">
+                <div class="flex items-center gap-4 text-left">
+                    <span class="text-4xl text-left text-left">⚔️</span>
+                    <h3 class="elegant-text text-2xl font-bold text-amber-700 uppercase tracking-tight text-left text-left">La Leyenda Militar</h3>
+                </div>
+                <div class="space-y-3 text-left text-left">
+                    <p class="text-stone-600 leading-relaxed text-sm text-left text-left text-left">
+                        Una de las historias más populares sitúa el origen durante las Guerras Carlistas en el siglo XIX. Según esta leyenda, el general <strong class="text-stone-800 text-left text-left">Tomás de Zumalacárregui</strong> habría probado una mezcla improvisada de huevos y patatas en una casa campesina.
+                    </p>
+                    <p class="text-stone-600 leading-relaxed text-sm italic border-l-4 border-amber-200 pl-4 text-left text-left text-left">
+                        La habría adoptado como alimento práctico para sus tropas por su facilidad de transporte y valor energético. Aunque no existen pruebas concluyentes, esta historia reforzó el carácter militar y popular del plato.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 flex flex-col gap-4 text-left">
+                <div class="flex items-center gap-4 text-left text-left">
+                    <span class="text-4xl text-left text-left">🥘</span>
+                    <h3 class="elegant-text text-2xl font-bold text-amber-700 uppercase tracking-tight text-left text-left text-left">Nacida de la Necesidad</h3>
+                </div>
+                <div class="space-y-3 text-justify text-left text-left text-left">
+                    <p class="text-stone-600 leading-relaxed text-sm text-left">
+                        Más allá de las leyendas, la tortilla parece haber surgido como resultado de la combinación de dos ingredientes abundantes y económicos: <strong class="text-stone-800 italic underline text-left">huevos y patatas</strong>. 
+                    </p>
+                    <p class="text-stone-600 leading-relaxed text-sm text-left text-left text-left">
+                        En una sociedad rural donde la autosuficiencia era clave, esta mezcla ofrecía un alimento completo y energético. Su sencillez permitió que se extendiera rápidamente por distintas regiones de España, adaptándose a los gustos locales con variaciones infinitas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 md:col-span-2 text-left">
+                <div class="flex flex-col md:flex-row items-center gap-8 text-left">
+                    <div class="flex-grow space-y-4 text-left text-left text-left">
+                        <div class="flex items-center gap-4 justify-start text-left text-left">
+                            <span class="text-4xl text-left text-left text-left">🚀</span>
+                            <h3 class="elegant-text text-2xl font-bold text-amber-700 uppercase tracking-tight text-left text-left text-left">Evolución y Consolidación</h3>
+                        </div>
+                        <p class="text-stone-600 leading-relaxed text-sm text-left text-left text-left">
+                            Durante el siglo XIX y principios del XX, la tortilla se consolidó como un plato habitual en hogares y tabernas. Con el desarrollo de la cultura de la tapa en ciudades como <strong class="text-stone-800 text-left">Madrid y Sevilla</strong>, la tortilla pasó de ser un alimento rural a convertirse en un símbolo gastronómico nacional. 
+                        </p>
+                        <p class="text-stone-600 leading-relaxed text-sm text-left text-left text-left text-left">
+                            Con el tiempo surgieron variantes regionales y el famoso debate sobre si debe llevar cebolla o no, discusión que continúa vigente en la actualidad y que define la pasión española por este plato.
+                        </p>
+                    </div>
+                    <div class="bg-amber-100 p-6 rounded-2xl text-center min-w-[240px] text-center">
+                        <span class="block text-4xl mb-2 text-center text-center text-center">🇪🇸</span>
+                        <span class="elegant-text text-lg font-bold text-amber-800 uppercase tracking-widest block text-center text-center">SÍMBOLO NACIONAL</span>
+                        <p class="text-[10px] text-amber-700 mt-2 uppercase tracking-tighter text-center text-center text-center">Icono de la cocina española moderna</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 bg-white p-10 rounded-3xl shadow-sm border border-stone-100 text-center">
+            <h3 class="elegant-text text-xl font-bold text-stone-800 uppercase tracking-widest mb-4 text-center text-center">De comida humilde a símbolo nacional</h3>
+            <p class="elegant-text text-lg italic text-stone-500 font-medium leading-relaxed max-w-4xl mx-auto text-center text-center">
+                Hoy en día, la tortilla de patata es considerada un icono de la cocina española y uno de los platos más representativos del país a nivel internacional. Su origen humilde y su evolución histórica reflejan la capacidad de la gastronomía popular para transformarse en patrimonio cultural. Más que una simple receta, la tortilla de patata es el resultado de siglos de historia, intercambios culturales y adaptación social.
+            </p>
+        </div>
+    </section>
+
+    <section id="receta" class="scroll-mt-24 text-left">
+        <!-- Título principal centrado -->
+        <div class="mb-8 text-center text-center text-center text-center text-center">
+            <h2 class="elegant-text text-3xl font-bold text-stone-800 border-b-2 border-amber-200 inline-block pb-2 uppercase tracking-tight text-center text-center text-center">La Receta Interactiva</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-10 rounded-3xl shadow-sm border border-stone-100 text-left">
+            <div class="space-y-6 text-left">
+                <div class="flex items-center justify-between bg-stone-50 p-4 rounded-xl border border-stone-200 text-left text-left">
+                    <div>
+                        <span class="elegant-text font-bold text-stone-800 text-lg uppercase text-xs tracking-widest text-left text-left">¿Con cebolla?</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-bold text-stone-400 text-left text-left">SIN</span>
+                        <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in text-left text-left">
+                            <input type="checkbox" name="toggle" id="cebolla-toggle" checked class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-all duration-300 z-10 text-left"/>
+                            <label for="cebolla-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-stone-300 cursor-pointer transition-colors duration-300 text-left"></label>
+                        </div>
+                        <span class="text-xs font-bold text-amber-600 text-left text-left text-left">CON</span>
+                    </div>
+                </div>
+                <div class="chart-container text-left text-left">
+                    <canvas id="ingredientsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="text-left text-left text-left text-left">
+                <div class="flex justify-center border-b border-stone-200 mb-6 text-left text-left">
+                    <button class="tab-btn active px-4 py-2 text-stone-600 font-medium border-b-2 border-transparent hover:text-amber-600 transition-colors uppercase text-xs tracking-widest text-left" data-target="ingredientes">Ingredientes</button>
+                    <button class="tab-btn px-4 py-2 text-stone-600 font-medium border-b-2 border-transparent hover:text-amber-600 transition-colors uppercase text-xs tracking-widest text-left" data-target="elaboracion">Técnica</button>
+                </div>
+                <div id="ingredientes" class="tab-content space-y-4 text-left text-left">
+                    <ul class="space-y-3 text-left">
+                        <li class="flex items-center justify-start gap-3 p-3 bg-stone-50 rounded-lg text-left text-left">
+                            <span class="text-2xl text-stone-400 text-left text-left">🥔</span>
+                            <div class="text-left text-left"><strong class="text-stone-800 text-left text-left text-left text-left">Patatas:</strong> 700g de variedad Monalisa o Kennebec para mejor textura.</div>
+                        </li>
+                        <li class="flex items-center justify-start gap-3 p-3 bg-stone-50 rounded-lg text-left text-left text-left">
+                            <span class="text-2xl text-stone-400 text-left text-left">🥚</span>
+                            <div class="text-left text-left text-left text-left text-left"><strong class="text-stone-800 text-left text-left text-left text-left text-left">Huevos:</strong> 6 unidades camperas (Código 0 o 1) a temperatura ambiente.</div>
+                        </li>
+                        <li id="ingrediente-cebolla" class="flex items-center justify-start gap-3 p-3 bg-amber-50 rounded-lg transition-opacity duration-300 text-left text-left text-left">
+                            <span class="text-2xl text-stone-400 text-left text-left">🧅</span>
+                            <div class="text-left text-left text-left text-left text-left text-left"><strong class="text-stone-800 text-left text-left text-left text-left text-left text-left">Cebolla:</strong> 1 mediana picada fina y pochada lentamente.</div>
+                        </li>
+                        <li class="flex items-center justify-start gap-3 p-3 bg-stone-50 rounded-lg text-left text-left text-left text-left">
+                            <span class="text-2xl text-stone-400 text-left text-left text-left">🫒</span>
+                            <div class="text-left text-left text-left text-left text-left text-left text-left text-left"><strong class="text-stone-800 text-left text-left text-left text-left text-left text-left text-left">Aceite:</strong> Oliva Virgen Extra (AOVE) abundante para el confitado.</div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="elaboracion" class="tab-content hidden space-y-4 text-left">
+                    <!-- Dinámico por JS - Alineado a la izquierda por JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mi-receta" class="scroll-mt-24 text-left">
+        <!-- Título principal centrado -->
+        <div class="mb-12 text-center text-center">
+            <h2 class="elegant-text text-3xl font-bold text-stone-800 border-b-2 border-amber-200 inline-block pb-2 uppercase tracking-tight text-center mx-auto text-center">Mi Receta Personal</h2>
+            <!-- Información centrada previa -->
+            <p class="text-stone-600 mt-6 max-w-4xl mx-auto text-lg leading-relaxed text-center">
+                Esta es mi interpretación definitiva de la tortilla de patata. El resultado es una pieza <strong class="text-amber-700 text-left text-left text-left">poco hecha, cremosa y de sabor intenso</strong>. La clave reside en el reposo y en la integración minuciosa de la patata con el huevo.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-left">
+            <div class="bg-amber-50 p-8 rounded-3xl border border-amber-100 shadow-sm h-fit text-left">
+                <h3 class="elegant-text text-xl font-bold text-amber-800 mb-6 uppercase tracking-widest flex items-center gap-2 text-left">
+                    <span>🛒</span> INGREDIENTES
+                </h3>
+                <ul class="space-y-4 text-stone-700 text-left text-left">
+                    <li class="flex items-center justify-start gap-3 border-b border-amber-200/50 pb-2 text-left text-left">
+                        <span class="font-bold text-amber-600 text-left text-left">4</span> Patatas medianas
+                    </li>
+                    <li class="flex items-center justify-start gap-3 border-b border-amber-200/50 pb-2 text-left text-left">
+                        <span class="font-bold text-amber-600 text-left text-left">1</span> Cebolla
+                    </li>
+                    <li class="flex items-center justify-start gap-3 border-b border-amber-200/50 pb-2 text-left text-left text-left">
+                        <span class="font-bold text-amber-600 text-left text-left text-left">6</span> Huevos grandes
+                    </li>
+                    <li class="flex items-center justify-start gap-3 border-b border-amber-200/50 pb-2 text-left text-left text-left text-left">
+                        <span class="font-bold text-amber-600 text-left text-left text-left">1</span> Cucharadita de sal
+                    </li>
+                    <li class="flex items-center justify-start gap-3 text-left text-left text-left">
+                        Aceite de oliva virgen extra (al gusto)
+                    </li>
+                </ul>
+            </div>
+
+            <div class="lg:col-span-2 bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-stone-100 text-left">
+                <h3 class="elegant-text text-xl font-bold text-stone-800 mb-8 uppercase tracking-widest flex items-center gap-2 text-left text-left text-left">
+                    <span>🍳</span> PASO A PASO
+                </h3>
+                <div class="space-y-8 text-left text-left">
+                    <div class="flex gap-4 text-left text-left text-left">
+                        <span class="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-sm text-left text-left">1</span>
+                        <p class="text-stone-600 text-left text-left text-left text-left text-left"><strong class="text-stone-800 text-left text-left text-left">Preparación base:</strong> Cortamos las patatas en dados más o menos finos y la cebolla en taquitos pequeños.</p>
+                    </div>
+                    <div class="flex gap-4 text-left text-left text-left text-left">
+                        <span class="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-sm text-left text-left">2</span>
+                        <p class="text-stone-600 text-left text-left text-left text-left text-left text-left text-left"><strong class="text-stone-800 text-left text-left text-left">Huevos:</strong> Batimos los seis huevos, que previamente tienen que haber estado a temperatura ambiente.</p>
+                    </div>
+                    <div class="flex gap-4 text-left text-left text-left text-left text-left">
+                        <span class="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-sm text-left text-left text-left">3</span>
+                        <p class="text-stone-600 text-left text-left text-left text-left text-left text-left text-left text-left text-left"><strong class="text-stone-800 text-left text-left">Fritura:</strong> Freímos las patatas a temperatura alta durante 8-10 minutos. A los 2 minutos de empezar, integramos la cebolla.</p>
+                    </div>
+                    <div class="flex gap-4 text-left text-left text-left text-left text-left text-left">
+                        <span class="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-sm text-left text-left text-left">4</span>
+                        <p class="text-stone-600 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left"><strong class="text-stone-800 text-left text-left">Integración:</strong> Escurrimos patata y cebolla, las echamos al bol con los huevos y añadimos sal al gusto.</p>
+                    </div>
+                    <div class="flex gap-4 text-left text-left text-left text-left text-left text-left text-left">
+                        <span class="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-sm text-left text-left text-left text-left">5</span>
+                        <p class="text-stone-600 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left"><strong class="text-stone-800 text-left text-left text-left">El Secreto:</strong> Aplastamos toda la mezcla durante unos 4 minutos y la dejamos reposar de 5 a 10 minutos para que se amalgame.</p>
+                    </div>
+                    <div class="flex gap-4 text-left text-left text-left text-left text-left text-left text-left text-left">
+                        <span class="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-sm text-left text-left text-left text-left text-left">6</span>
+                        <p class="text-stone-600 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left"><strong class="text-stone-800 text-left text-left text-left">Cuajado rápido:</strong> En una sartén muy caliente con dos cucharadas de aceite, vertemos la mezcla. Cocinamos solo <strong class="text-amber-700 text-left text-left text-left text-left text-left">30 segundos por lado</strong>.</p>
+                    </div>
+                </div>
+                <div class="mt-10 p-6 bg-stone-50 rounded-2xl border-2 border-dashed border-amber-200 text-center text-center text-center">
+                    <p class="elegant-text text-xl font-bold text-amber-800 uppercase tracking-tighter italic text-center text-center text-center">¡Resultado final: una tortilla poco hecha y riquísima!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: SANTANDER GOURMET - TOTALMENTE CENTRADA -->
+    <section id="santander" class="scroll-mt-24 text-center">
+        <div class="mb-12 text-center text-center text-center text-center text-center">
+            <h2 class="elegant-text text-4xl font-bold text-stone-800 border-b-2 border-amber-200 inline-block pb-2 uppercase tracking-tight text-center mx-auto text-center text-center text-center text-center text-center">Tortilla en Santander</h2>
+            <p class="text-stone-600 mt-6 max-w-4xl mx-auto text-lg leading-relaxed text-center text-center text-center text-center text-center text-center text-center">
+                Santander es una de las capitales mundiales de la tortilla. Guía tus pasos hacia experiencias memorables en estos destinos emblemáticos donde degustar la perfección.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center text-center text-center">
+            <a href="https://www.restaurantecanadio.com/" target="_blank" rel="noopener noreferrer" class="variant-card bg-white p-8 rounded-3xl shadow-sm border border-stone-100 hover:border-amber-200 transition-all text-center group text-center">
+                <span class="text-3xl mb-4 block text-center text-center">📍</span>
+                <h4 class="elegant-text text-xl font-black text-amber-700 uppercase mb-4 text-center group-hover:text-amber-600 text-center text-center">Cañadío</h4>
+                <p class="text-stone-500 text-sm leading-relaxed mb-4 text-center text-center text-center">Lugar de culto absoluto. Su tortilla ha sido premiada como la <strong class="text-stone-800 italic text-center text-center text-center">mejor de España</strong>. Su textura semilíquida es legendaria.</p>
+                <span class="text-xs font-bold text-amber-600 uppercase tracking-widest text-center text-center text-center">Prestigio Nacional</span>
+            </a>
+            <a href="https://bodegadelriojano.com/carta" target="_blank" rel="noopener noreferrer" class="variant-card bg-white p-8 rounded-3xl shadow-sm border border-stone-100 hover:border-amber-200 transition-all text-center group text-center text-center">
+                <span class="text-3xl mb-4 block text-center text-center text-center text-center">⚓</span>
+                <h4 class="elegant-text text-xl font-black text-amber-700 uppercase mb-4 text-center group-hover:text-amber-600 text-center text-center text-center">El Riojano</h4>
+                <p class="text-stone-500 text-sm leading-relaxed mb-4 text-center text-center text-center text-center">Un clásico imbatible en el corazón de Santander. Su tortilla es el estándar de la tradición: patata confitada y jugosidad extrema.</p>
+                <span class="text-xs font-bold text-amber-600 uppercase tracking-widest text-center text-center text-center text-center">Patrimonio Local</span>
+            </a>
+            <a href="https://casalita.es/" target="_blank" rel="noopener noreferrer" class="variant-card bg-white p-8 rounded-3xl shadow-sm border border-stone-100 hover:border-amber-200 transition-all text-center group text-center text-center text-center">
+                <span class="text-3xl mb-4 block text-center text-center text-center text-center text-center">💎</span>
+                <h4 class="elegant-text text-xl font-black text-amber-700 uppercase mb-4 text-center group-hover:text-amber-600 text-center text-center text-center text-center">Casa Lita</h4>
+                <p class="text-stone-500 text-sm leading-relaxed mb-4 text-center text-center text-center text-center text-center">En pleno Paseo de Pereda, famosa por sus pinchos. Su tortilla destaca por ser el acompañamiento perfecto para un paseo marítimo.</p>
+                <span class="text-xs font-bold text-amber-600 uppercase tracking-widest text-center text-center text-center text-center text-center">Experiencia Paseo</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: VARIANTES POPULARES -->
+    <section id="variantes" class="scroll-mt-24 text-left">
+        <div class="mb-12 text-center text-center text-center text-center text-center text-center">
+            <h2 class="elegant-text text-3xl font-bold text-stone-800 border-b-2 border-amber-200 inline-block pb-2 uppercase tracking-tight text-center text-center text-center text-center">Variantes Populares</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 text-center text-center text-center text-center text-center text-center text-center">
+            <a href="https://www.youtube.com/watch?v=MKskYt3hGrk" target="_blank" class="variant-card bg-white p-6 rounded-3xl border border-stone-100 shadow-sm text-center text-center">
+                <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-center text-center text-center">🥩</div>
+                <h4 class="font-bold text-stone-800 mb-2 uppercase text-xs tracking-widest text-center text-center text-center text-center text-center text-center">Con Chorizo</h4>
+                <p class="text-stone-500 text-sm text-center text-center text-center text-center text-center text-center">Sabor intenso y color rojizo. Un clásico de siempre.</p>
+            </a>
+            <a href="https://www.youtube.com/watch?v=GgeOY65yZsA" target="_blank" class="variant-card bg-white p-6 rounded-3xl border border-stone-100 shadow-sm text-center text-center text-center">
+                <div class="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-center text-center text-center text-center">🫑</div>
+                <h4 class="font-bold text-stone-800 mb-2 uppercase text-xs tracking-widest text-center text-center text-center text-center text-center text-center text-center text-center">Tortilla Paisana</h4>
+                <p class="text-stone-500 text-sm text-center text-center text-center text-center text-center text-center text-center text-center">Pimientos, guisantes y jamón york. Explosión de color.</p>
+            </a>
+            <a href="https://www.youtube.com/watch?v=rXUmXf-F1KQ" target="_blank" class="variant-card bg-white p-6 rounded-3xl border border-stone-100 shadow-sm text-center text-center text-center text-center">
+                <div class="w-16 h-16 bg-yellow-50 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-center text-center text-center text-center text-center">🧀</div>
+                <h4 class="font-bold text-stone-800 mb-2 uppercase text-xs tracking-widest text-center text-center text-center text-center text-center text-center text-center text-center text-center">Rellena</h4>
+                <p class="text-stone-500 text-sm text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">Abierta al medio con jamón y queso fundido.</p>
+            </a>
+            <a href="https://www.youtube.com/watch?v=jmp8Rez8YTg" target="_blank" class="variant-card bg-white p-6 rounded-3xl border border-stone-100 shadow-sm text-center text-center text-center text-center text-center">
+                <div class="w-16 h-16 bg-stone-100 text-stone-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-center text-center text-center text-center text-center text-center">🍄</div>
+                <h4 class="font-bold text-stone-800 mb-2 uppercase text-xs tracking-widest text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">Gourmet / Trufa</h4>
+                <p class="text-stone-500 text-sm text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">La tendencia actual en alta cocina y vanguardia.</p>
+            </a>
+        </div>
+
+        <div class="bg-white p-10 rounded-3xl shadow-sm border border-stone-100 text-center text-center text-center text-center text-center text-center">
+            <h3 class="elegant-text text-center text-xl font-bold mb-8 text-stone-700 uppercase tracking-widest text-center text-center text-center text-center text-center text-center">Interés de Consumo en España (%)</h3>
+            <div class="chart-container text-center text-center text-center text-center text-center">
+                <canvas id="variantsChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: TRADICIÓN Y MEDIOS CON CAMBIOS EN BOTONES -->
+    <section id="cultura" class="scroll-mt-24 text-left">
+        <!-- Título principal centrado -->
+        <div class="mb-8 text-center text-center text-center text-center text-center text-center text-center">
+            <h2 class="elegant-text text-3xl font-bold text-stone-800 border-b-2 border-amber-200 inline-block pb-2 uppercase tracking-tight text-center text-center text-center text-center text-center text-center text-center">Tradición y Medios</h2>
+            <p class="elegant-text text-stone-600 mt-4 max-w-2xl mx-auto italic font-medium leading-relaxed text-center text-center text-center text-center text-center text-center text-center text-center">"La cocina es el lenguaje mediante el cual se puede expresar armonía, felicidad y cultura."</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left text-left text-left text-left text-left text-left text-left text-left">
+            <div class="bg-white rounded-3xl shadow-lg border border-stone-100 overflow-hidden flex flex-col transform hover:scale-[1.01] transition-transform text-center text-center text-center text-center text-center text-center text-center">
+                <div class="h-64 bg-cover bg-center" style="background-image: url('ASSETS/IMG/alejandro.png')"></div>
+                <div class="p-8 space-y-4 flex-grow flex flex-col justify-between items-center text-center text-center text-center text-center text-center text-center text-center">
+                    <div>
+                        <h4 class="elegant-text font-black text-2xl text-stone-800 tracking-tight uppercase text-center text-center text-center text-center text-center text-center text-center">Chef Alejandro Oliveira</h4>
+                        <p class="text-amber-600 text-sm font-bold italic text-center text-center text-center text-center text-center text-center text-center text-center">"La paciencia es el ingrediente secreto del éxito."</p>
+                        <p class="text-stone-500 text-sm mt-4 leading-relaxed text-center text-center text-center text-center text-center text-center text-center text-center">Referente indiscutible galardonado con múltiples premios nacionales. Su técnica del confitado lento y su selección de patata han elevado el listón de la tortilla española.</p>
+                    </div>
+                    <div class="mt-6 text-center text-center text-center text-center text-center text-center text-center">
+                        <a href="https://www.huleymantel.com/menu-dia/tortilla-patatas-chef-alejandro-oliveira-se-corona-mejor-espana_103175_102.html" target="_blank" class="inline-block bg-stone-900 text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-amber-600 transition-colors text-center text-center text-center text-center text-center text-center text-center">Noticia</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-lg border border-stone-100 overflow-hidden flex flex-col transform hover:scale-[1.01] transition-transform text-center text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                <div class="h-64 bg-cover" style="background-image: url('ASSETS/IMG/simon.png'); background-position: center 20%;"></div>
+                <div class="p-8 space-y-4 flex-grow flex flex-col justify-between items-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">
+                    <div>
+                        <h4 class="elegant-text font-black text-2xl text-stone-800 tracking-tight uppercase text-center text-center text-center text-center text-center text-center text-center text-center">Chef Simón García</h4>
+                        <p class="text-amber-600 text-sm font-bold italic text-center text-center text-center text-center text-center text-center text-center text-center text-center">"Innovar sin perder de vista nuestras raíces."</p>
+                        <p class="text-stone-500 text-sm mt-4 leading-relaxed text-center text-center text-center text-center text-center text-center text-center text-center text-center">Maestro de la jugosidad extrema. Simón ha revolucionado las tabernas modernas con un punto de cuajado que desafía la gravedad y conquista los paladares más exigentes.</p>
+                    </div>
+                    <div class="mt-6 text-center text-center text-center text-center text-center text-center text-center text-center text-center">
+                        <a href="https://revistaalimentaria.es/madridalimenta/premios/simon-garcia-de-la-tortilla-castiza-ganador-del-concurso-la-mejor-tortilla-de-patata" target="_blank" class="inline-block bg-stone-900 text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-amber-600 transition-colors text-center text-center text-center text-center text-center text-center text-center text-center text-center">Noticia</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="scroll-mt-24 text-left text-center">
+        <!-- Título principal centrado -->
+        <div class="mb-10 text-center text-center text-center text-center text-center text-center text-center text-center">
+            <h2 class="elegant-text text-3xl font-bold text-stone-800 border-b-2 border-amber-200 inline-block pb-2 uppercase tracking-tight text-center text-center text-center text-center text-center text-center text-center text-center text-center">Contacto</h2>
+            <p class="text-stone-500 mt-4 font-bold text-xs tracking-widest uppercase text-stone-400 text-center text-center text-center text-center text-center text-center text-center text-center max-w-3xl mx-auto">Formulario de Ayuda Personalizada</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto bg-white p-10 rounded-3xl shadow-xl border border-stone-100 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+            <form id="contact-form" class="space-y-6 text-left text-left text-left text-left text-left">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left text-left text-left text-left text-left text-left text-left text-left">
+                    <div class="text-left text-left text-left text-left text-left text-left text-left text-left">
+                        <label class="block text-xs font-bold text-stone-500 uppercase mb-2 text-left text-left text-left text-left text-left text-left text-left text-left text-left">Nombre</label>
+                        <input type="text" class="w-full bg-stone-50 border border-stone-200 rounded-xl p-3 focus:outline-none focus:border-amber-500 transition-colors text-left text-left text-left text-left text-left text-left text-left text-left" placeholder="Su nombre" required>
+                    </div>
+                    <div class="text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                        <label class="block text-xs font-bold text-stone-500 uppercase mb-2 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Apellidos</label>
+                        <input type="text" class="w-full bg-stone-50 border border-stone-200 rounded-xl p-3 focus:outline-none focus:border-amber-500 transition-colors text-left text-left text-left text-left text-left text-left text-left text-left text-left" placeholder="Sus apellidos" required>
+                    </div>
+                </div>
+                <div class="text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                    <label class="block text-xs font-bold text-stone-500 uppercase mb-2 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Email</label>
+                    <input type="email" class="w-full bg-stone-50 border border-stone-200 rounded-xl p-3 focus:outline-none focus:border-amber-500 transition-colors text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                </div>
+                <div class="text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                    <label class="block text-xs font-bold text-stone-500 uppercase mb-2 text-left text-left text-left text-left text-left text-left text-left text-left">Tipo de Mensaje</label>
+                    <select class="w-full bg-stone-50 border border-stone-200 rounded-xl p-3 focus:outline-none focus:border-amber-500 cursor-pointer transition-colors text-left text-left text-left text-left text-left text-left">
+                        <option>Duda General</option>
+                        <option>Búsqueda de Empleo</option>
+                        <option>Comentario sobre la Web</option>
+                        <option>Otros</option>
+                    </select>
+                </div>
+                <div class="text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                    <label class="block text-xs font-bold text-stone-500 uppercase mb-2 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Zona del Mensaje</label>
+                    <textarea class="w-full bg-stone-50 border border-stone-200 rounded-xl p-3 focus:outline-none focus:border-amber-500 min-h-[120px] transition-colors text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left" placeholder="Redacte aquí su mensaje..."></textarea>
+                </div>
+                <button type="button" onclick="handleFormSubmit()" class="w-full bg-amber-600 text-white font-bold py-4 rounded-xl hover:bg-stone-900 transition-colors uppercase tracking-widest text-sm shadow-lg text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">Enviar Solicitud</button>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer alineado a la izquierda -->
+<footer class="footer-bg-wrapper text-white pt-20 pb-10 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+    <div class="footer-bg-image"></div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-start text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+            <div class="space-y-6 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                <div class="flex items-center justify-start gap-2 text-left text-left text-left text-left text-left text-left text-left">
+                    <span class="text-3xl text-left text-left text-left text-left text-left text-left text-left text-left text-left">🍳</span>
+                    <span class="font-bold text-2xl tracking-tighter uppercase text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Tortilla de <span class="text-amber-500 text-stone-200 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Patata</span></span>
+                </div>
+                <p class="text-stone-300 text-sm leading-relaxed elegant-text italic text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                    "Un homenaje digital a la joya de nuestra gastronomía, desde sus raíces extremeñas hasta la alta cocina de vanguardia."
+                </p>
+                <div class="pt-4 border-t border-white/10 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                    <p class="text-xs uppercase tracking-widest text-stone-400 mb-1 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Autor del Proyecto</p>
+                    <p class="font-bold text-amber-500 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Noa Porto Fidalgo</p>
+                </div>
+            </div>
+
+            <div class="space-y-6 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                <h5 class="font-black uppercase text-xs tracking-[0.2em] text-white/50 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Navegación Rápida</h5>
+                <ul class="space-y-3 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                    <li><a href="#historia" class="text-stone-300 hover:text-amber-500 transition-colors text-sm uppercase font-bold tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left">Historia</a></li>
+                    <li><a href="#receta" class="text-stone-300 hover:text-amber-500 transition-colors text-sm uppercase font-bold tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left text-left">La Receta</a></li>
+                    <li><a href="#santander" class="text-stone-300 hover:text-amber-500 transition-colors text-sm uppercase font-bold tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left text-left">Santander</a></li>
+                    <li><a href="#contacto" class="text-stone-300 hover:text-amber-500 transition-colors text-sm uppercase font-bold tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Ayuda & Soporte</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-6 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                <h5 class="font-black uppercase text-xs tracking-[0.2em] text-white/50 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Contacto & Sede</h5>
+                <div class="space-y-4 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                    <div class="flex items-start justify-start gap-3 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                        <span class="text-amber-500 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">📍</span>
+                        <p class="text-sm text-stone-300 leading-tight text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Paseo de Pereda, 12, Planta 3<br>39004 Santander, Cantabria, España</p>
+                    </div>
+                    <div class="flex items-center justify-start gap-3 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                        <span class="text-amber-500 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">📞</span>
+                        <p class="text-sm text-stone-300 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">+34 942 55 11 99</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-500 uppercase tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+            <p class="text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">&copy; <span id="current-year"></span> Tortilla de Patata Report - Todos los derechos reservados.</p>
+            <p class="italic text-stone-400 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Diseñado por Noa Porto Fidalgo</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const closeBtn = document.getElementById('close-menu');
+    const overlay = document.getElementById('mobile-overlay');
+    const menuLinks = document.querySelectorAll('.menu-link');
+    const elaboracionDiv = document.getElementById('elaboracion');
+
+    const toggleMenu = () => overlay.classList.toggle('hidden');
+
+    hamburgerBtn.addEventListener('click', toggleMenu);
+    closeBtn.addEventListener('click', toggleMenu);
+    menuLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (link.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                toggleMenu();
+                const navHeight = 64;
+                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            } else {
+                toggleMenu();
+            }
+        });
+    });
+
+    const state = { conCebolla: true };
+    const data = {
+        ingredientesCebolla: [55, 35, 8, 2],
+        ingredientesSinCebolla: [60, 38, 0, 2],
+        labelsIngredientes: ['Patatas (%)', 'Huevos (%)', 'Cebolla (%)', 'AOVE & Sal (%)'],
+        variantesLabels: ['Chorizo', 'Pimientos', 'Queso', 'Trufa', 'Jamón'],
+        variantesData: [35, 22, 18, 10, 15]
+    };
+
+    const ctxIngredientes = document.getElementById('ingredientsChart').getContext('2d');
+    const ingredientsChart = new Chart(ctxIngredientes, {
+        type: 'doughnut',
+        data: {
+            labels: data.labelsIngredientes,
+            datasets: [{
+                data: data.ingredientesCebolla,
+                backgroundColor: ['#fcd34d', '#f59e0b', '#d6d3d1', '#a8a29e'],
+                borderWidth: 2,
+                borderColor: '#ffffff',
+                hoverOffset: 12
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom' } },
+            cutout: '60%'
+        }
+    });
+
+    const ctxVariants = document.getElementById('variantsChart').getContext('2d');
+    new Chart(ctxVariants, {
+        type: 'bar',
+        data: {
+            labels: data.variantesLabels,
+            datasets: [{
+                label: 'Preferencias (%)',
+                data: data.variantesData,
+                backgroundColor: '#d97706',
+                borderRadius: 4,
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+                x: { beginAtZero: true, max: 40, grid: { color: '#f5f5f4' } },
+                y: { grid: { display: false } }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+
+    const updateTechnique = (conCebolla) => {
+        if (conCebolla) {
+            elaboracionDiv.innerHTML = `
+                <ol class="space-y-6 text-stone-700 text-left">
+                    <li class="pl-4 border-l-2 border-amber-400 text-left">
+                        <strong class="text-stone-900 block mb-1 uppercase text-xs tracking-widest">1. El Corte Maestro e Irregular</strong>
+                        Pela y corta las patatas en <em class="text-amber-700">lascas finas e irregulares</em> ("chascar"). El corte irregular permite que unas partes se deshagan creando cremosidad mientras otras mantienen un ligero mordisco. Pica la cebolla muy fina para que casi desaparezca en la cocción.
+                    </li>
+                    <li class="pl-4 border-l-2 border-amber-400 text-left">
+                        <strong class="text-stone-900 block mb-1 uppercase text-xs tracking-widest">2. Confitado Lento y Caramelización</strong>
+                        Sumerge patata y cebolla en abundante AOVE tibio (aprox. 120°C). No buscamos freír a lo bruto, sino <em class="text-amber-700">confitar</em>. La cebolla debe soltar sus azúcares y caramelizar suavemente junto a la patata, que debe quedar tierna, casi como un puré tosco. Escurre muy bien el aceite.
+                    </li>
+                    <li class="pl-4 border-l-2 border-amber-400 text-left">
+                        <strong class="text-stone-900 block mb-1 uppercase text-xs tracking-widest">3. El Secreto Crítico: El Reposo de la Mezcla</strong>
+                        Mezcla la patata y cebolla calientes directamente con el huevo batido. <em class="text-amber-700 font-bold underline">Deja reposar 10 minutos</em>. Este es el paso clave: el almidón de la patata hidrata el huevo, espesándolo de forma natural y creando una amalgama que garantiza la jugosidad sin necesidad de dejar el huevo crudo.
+                    </li>
+                    <li class="pl-4 border-l-2 border-amber-400 text-left">
+                        <strong class="text-stone-900 block mb-1 uppercase text-xs tracking-widest">4. El Choque Térmico y Cuajado</strong>
+                        Sellar en sartén con fuego muy vivo. Vertemos la mezcla y removemos ligeramente al principio. Buscamos un <strong class="text-stone-900">sellado exterior rápido</strong> (30-40 seg por lado) para formar la "piel". El interior quedará meloso y termostatizado gracias al calor residual del reposo previo.
+                    </li>
+                </ol>
+            `;
+        } else {
+            elaboracionDiv.innerHTML = `
+                <ol class="space-y-6 text-stone-700 text-left">
+                    <li class="pl-4 border-l-2 border-amber-400 text-left">
+                        <strong class="text-stone-900 block mb-1 uppercase text-xs tracking-widest">1. Selección y Corte Puro</strong>
+                        Sin cebolla, el sabor de la patata es el protagonista total. Córtala en <em class="text-amber-700">lascas finas</em> y lávala para quitar el exceso de almidón superficial si buscas una textura más definida, o déjalo si prefieres una tortilla más compacta y unida.
+                    </li>
+                    <li class="pl-4 border-l-2 border-amber-400 text-left">
+                        <strong class="text-stone-900 block mb-1 uppercase text-xs tracking-widest">2. La Fritura de Alta Calidad</strong>
+                        Confitar las patatas en un AOVE excepcional. Al no haber cebolla que aporte dulzor, el sabor del aceite se nota mucho más. La patata debe quedar tierna por dentro pero con algún <em class="text-amber-700 text-left">borde ligeramente dorado</em> para aportar notas tostadas y profundidad al conjunto.
+                    </li>
+                    <li class="pl-4 border-l-2 border-amber-400 text-left">
+                        <strong class="text-stone-900 block mb-1 uppercase text-xs tracking-widest">3. Reposo y Fusión de Almidones</strong>
+                        Mezcla con el huevo batido y sal de escamas. <em class="text-amber-700 font-bold underline text-left">Espera 10 minutos</em>. El huevo debe "beberse" parte del calor de la patata. Esto crea una textura sedosa donde el huevo no resbala sobre la patata, sino que forma una sola pieza cremosa.
+                    </li>
+                    <li class="pl-4 border-l-2 border-amber-400 text-left">
+                        <strong class="text-stone-900 block mb-1 uppercase text-xs tracking-widest">4. El Sellado de Alta Temperatura</strong>
+                        Usa una sartén bien curada a fuego alto. Vertemos y, tras unos segundos, damos la vuelta. Buscamos el contraste máximo entre el exterior firme y sabroso y el sabor puro, casi lácteo, del huevo y la patata en su punto justo de melosidad.
+                    </li>
+                </ol>
+            `;
+        }
+    };
+
+    updateTechnique(true);
+
+    const toggleBtn = document.getElementById('cebolla-toggle');
+    const itemCebolla = document.getElementById('ingrediente-cebolla');
+
+    toggleBtn.addEventListener('change', (e) => {
+        state.conCebolla = e.target.checked;
+        if (state.conCebolla) {
+            ingredientsChart.data.datasets[0].data = data.ingredientesCebolla;
+            itemCebolla.style.display = 'flex';
+            updateTechnique(true);
+        } else {
+            ingredientsChart.data.datasets[0].data = data.ingredientesSinCebolla;
+            itemCebolla.style.display = 'none';
+            updateTechnique(false);
+        }
+        ingredientsChart.update();
+    });
+
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active', 'border-amber-600'));
+            tabContents.forEach(c => c.classList.add('hidden'));
+            btn.classList.add('active', 'border-amber-600');
+            const targetId = btn.getAttribute('data-target');
+            document.getElementById(targetId).classList.remove('hidden');
+        });
+    });
+
+});
+
+function handleFormSubmit() {
+    document.getElementById('modal-sent').classList.remove('hidden');
+    document.getElementById('contact-form').reset();
+}
+</script>
+</body>
+</html>
